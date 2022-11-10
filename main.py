@@ -17,18 +17,18 @@ def main():
         print(f'Invalid URL: "{url}"')
         exit(0)
 
-    soup = BeautifulSoup(html_text, 'html.parser')
+    soup = BeautifulSoup(html_text, "html.parser")
 
     match args.format:
         case "pdf":
             print("pdf export")
         case "csv":
             print("source,link")
-            for link in soup.find_all('a'):
+            for link in soup.find_all("a"):
                 print(f'"{url}"', end=",")
-                print('"', link.get('href'), '"', sep="")
+                print('"', link.get("href"), '"', sep="")
         case _:
-            for link in soup.find_all('a'):
-                print(link.get('href'))
+            for link in soup.find_all("a"):
+                print(link.get("href"))
 main()
 
