@@ -2,3 +2,9 @@
 
 ScrapMyLink (or sml) is a link scraper.
 
+== Usage
+
+=== Server
+
+1. `docker-compose up`
+2. Go to http://127.0.0.1:4444/
