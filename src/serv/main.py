@@ -1,6 +1,20 @@
 import os
 from flask import Flask, request, render_template
 
+import requests
+from bs4 import BeautifulSoup
+
+
+def get_text_links(url: str):
+    html_text = requests.get(url).text
+    soup = BeautifulSoup(html_text, "html.parser")
+    res = []
+    for link in soup.find_all("a"):
+        res.append(link.get('href'))
+    return res
+
+
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -10,7 +24,8 @@ def render_form():
 @app.route("/", methods=['POST'])
 def get_form():
     url = request.form['link']
-    return url
+    res = get_text_links(url)
+    return res
 
 if __name__=="__main__":
     app.run(host=os.getenv('IP', '0.0.0.0'), 
