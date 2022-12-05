@@ -19,16 +19,15 @@ def main():
 
     soup = BeautifulSoup(html_text, "html.parser")
 
-    match args.format:
-        case "pdf":
-            print("pdf export")
-        case "csv":
-            print("source,link")
-            for link in soup.find_all("a"):
-                print(f'"{url}"', end=",")
-                print('"', link.get("href"), '"', sep="")
-        case _:
-            for link in soup.find_all("a"):
-                print(link.get("href"))
+    if args.format == "pdf":
+        print("pdf export")
+    elif args.format == "csv":
+        print("source,link")
+        for link in soup.find_all("a"):
+            print(f'"{url}"', end=",")
+            print('"', link.get("href"), '"', sep="")
+    else:
+        for link in soup.find_all("a"):
+            print(link.get("href"))
 main()
 
