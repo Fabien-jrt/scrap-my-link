@@ -1,0 +1,7 @@
+services:
+  web:
+    container_name: flask
+    build:
+      context: ./src/serv/.
+    ports:
+      - "4444:4444"

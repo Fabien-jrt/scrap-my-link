@@ -2,3 +2,15 @@
 
 ScrapMyLink (or sml) is a link scraper.
 
+== Usage
+
+=== CLI
+
+1. `docker build -t sml .`
+2. `docker run sml`
+3. `docker run sml python main.py https://google.com`
+
+=== Server
+
+1. `docker-compose up`
+2. Go to http://127.0.0.1:4444/
