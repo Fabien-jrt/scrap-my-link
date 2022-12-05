@@ -9,7 +9,7 @@ def render_form():
 
 @app.route("/", methods=['POST'])
 def get_form():
-    url = request.form['text']
+    url = request.form['link']
     return url
 
 if __name__=="__main__":

@@ -1,4 +1,36 @@
-<form method="POST">
-    <input name="text">
-    <input type="submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+        max-width: 38rem;
+        padding: 2rem;
+        margin: auto;
+        line-height: 1.5rem;
+        font-size: 24px;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+        margin: 3em 0 1em;
+        }
+
+        p,ul,ol {
+        margin-bottom: 2em;
+        color: #1d1d1d;
+        font-family: sans-serif;
+        }
+    </style>
+    <title>Scrap My Link</title>
+</head>
+<body>
+    <h1>SML: Scrap My Link</h1>
+    <form method="POST">
+        <label>Link to scrap: </label>
+        <input name="link" type="url" placeholder="https://wikipedia.org" value="https://wikipedia.org" pattern="(http|https)://.*\..*" required />
+        <input type="submit" />
+    </form>
+</body>
+</html>
