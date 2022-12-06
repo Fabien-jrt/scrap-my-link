@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def get_text_links(url: str) -> list[str]:
+def _get_links(url: str) -> list[str]:
     html_text = requests.get(url).text
     soup = BeautifulSoup(html_text, "html.parser")
     res = []
@@ -25,8 +25,21 @@ def render_form():
 @app.route("/", methods=['POST'])
 def get_form():
     url = request.form['link']
-    res = get_text_links(url)
+    res = _get_links(url)
     return json.dumps(res)
+
+@app.route("/scrap/<link>")
+def get_links(link: str):
+    url = f"https://{link}"
+    res = _get_links(url)
+    return json.dumps(res)
+
+@app.route("/scrap/unsecure/<link>")
+def get_links_unsecure(link: str):
+    url = f"http://{link}"
+    res = _get_links(url)
+    return json.dumps(res)
+
 
 if __name__=="__main__":
     app.run(host=os.getenv('IP', '0.0.0.0'), 
