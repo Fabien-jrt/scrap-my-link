@@ -1,11 +1,12 @@
 import os
 from flask import Flask, request, render_template
+import json
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def get_text_links(url: str):
+def get_text_links(url: str) -> list[str]:
     html_text = requests.get(url).text
     soup = BeautifulSoup(html_text, "html.parser")
     res = []
@@ -25,7 +26,7 @@ def render_form():
 def get_form():
     url = request.form['link']
     res = get_text_links(url)
-    return res
+    return json.dumps(res)
 
 if __name__=="__main__":
     app.run(host=os.getenv('IP', '0.0.0.0'), 
